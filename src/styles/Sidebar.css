@@ -8,52 +8,75 @@
     background-color: #2a2a3c;
     color: white;
     height: 100vh; /* Full height to allow positioning */
-}
-
-/* Divider */
-.divider {
+  }
+  
+  /* Sidebar Title */
+  .sidebar h2 {
+    margin-top: 0;
+  }
+  
+  /* Divider */
+  .divider {
     margin: 10px 0;
     border-top: 1px solid #444465;
-}
-
-/* User list styling */
-.user-list {
+  }
+  
+  /* Channel List Styling */
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar li:hover {
+    background-color: #444465;
+  }
+  
+  /* User list styling */
+  .user-list {
     list-style: none;
     padding-left: 20px;
     margin: 5px 0 0 0;
-}
-
-.user-list li {
+  }
+  
+  .user-list li {
     color: #62c2ff;
     font-size: 0.9em;
-}
-
-/* Voice controls box at the bottom */
-.voice-controls-box {
+  }
+  
+  /* Voice controls box at the bottom */
+  .voice-controls-box {
     margin-top: auto; /* Pushes the box to the bottom */
     padding: 15px;
     background-color: #33334a;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     text-align: center;
-}
-
-.voice-controls-box h3 {
+  }
+  
+  .voice-controls-box h3 {
     margin: 0 0 10px;
     font-size: 0.9em;
-}
-
-/* Emoji Button Styling */
-.emoji-button {
+  }
+  
+  /* Emoji Button Styling */
+  .emoji-button {
     background: none;
     border: none;
     font-size: 1.5em;
     cursor: pointer;
     color: #ffffff;
     margin: 0 5px;
-}
-
-.emoji-button:disabled {
+  }
+  
+  .emoji-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-}
+  }
+  

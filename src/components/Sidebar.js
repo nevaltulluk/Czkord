@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import '../styles/Sidebar.css';
+import useWebRTC from './useWebRTC';
 
-function Sidebar({ 
-    voiceChannel, 
-    setVoiceChannel, 
-    isMuted, 
-    toggleMute, 
-    disconnect, 
-    reconnect, 
-    isConnected 
-}) {
+function Sidebar({ voiceChannel, setVoiceChannel }) {
     const [showVoiceControls, setShowVoiceControls] = useState(false);
+    const {
+        audioRef,
+        isConnected,
+        isMuted,
+        error,
+        initializeStream,
+        toggleMute,
+        disconnect,
+        reconnect,
+    } = useWebRTC();
 
     const handleVoiceChannelClick = (channel) => {
         setVoiceChannel(channel);
-        setShowVoiceControls(true); // Show controls when a voice channel is selected
+        setShowVoiceControls(true);
+        if (!isConnected) {
+            initializeStream(); // Connect to WebRTC when a voice channel is selected
+        }
     };
 
     const handleDisconnect = () => {
@@ -58,13 +64,12 @@ function Sidebar({
                 </li>
             </ul>
 
-            {/* Show the voice controls box if a voice channel is selected and not disconnected */}
             {showVoiceControls && voiceChannel && (
                 <div className="voice-controls-box">
                     <h3>Connected to {voiceChannel}</h3>
                     <div className="button-group">
                         <button onClick={toggleMute} disabled={!isConnected} className="emoji-button">
-                            {isMuted ? "🎤" : "🎙️"}
+                            {isMuted ? "🔉" : "🔇"}
                         </button>
                         <button onClick={handleDisconnect} disabled={!isConnected} className="emoji-button">
                             📞
@@ -72,6 +77,9 @@ function Sidebar({
                     </div>
                 </div>
             )}
+
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <audio ref={audioRef} autoPlay /> {/* Audio element to play back the audio */}
         </aside>
     );
 }
